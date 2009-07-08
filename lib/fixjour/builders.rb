@@ -68,10 +68,6 @@ module Fixjour
       end
     end
 
-    def name_for(klass)
-      klass.name.underscore
-    end
-
     # Anonymous class used for reflecting on current Fixjour state.
     def evaluator
       @evaluator ||= begin
