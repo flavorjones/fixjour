@@ -39,6 +39,10 @@ build_model(:foos) do
   validates_presence_of :name
 end
 
+build_model(:sub_thing, :contained => Foo) do
+  string :name
+end
+
 build_model(:bars) do
   string :name
 
@@ -68,6 +72,10 @@ def define_all_builders
   Fixjour do
     define_builder(Foo) do |klass, overrides|
       klass.new({ :name => 'Foo Namery', :bar => new_bar, :owner => new_person }.merge(overrides))
+    end
+
+    define_builder(Foo::SubThing) do |klass, overrides|
+      klass.new({ :name => "Foo Sub Thing Namery" })
     end
 
     define_builder(Bar) do |klass, overrides|

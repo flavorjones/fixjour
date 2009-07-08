@@ -317,8 +317,8 @@ describe Fixjour do
 
     describe "Fixjour.builders" do
       it "contains the classes for which there are builders" do
-        Fixjour.should have(5).builders
-        Fixjour.builders.map(&:klass).should include(Foo, Bar, Bazz)
+        Fixjour.should have(6).builders
+        Fixjour.builders.map(&:klass).should include(Foo, Bar, Bazz, Foo::SubThing)
       end
 
       context "when defining multiple builders for same class" do
@@ -524,5 +524,16 @@ describe Fixjour do
         end
       end
     end
+
+    context "nested class" do
+      it "should have a new_* method" do
+        new_foo_sub_thing.class.should == Foo::SubThing
+      end
+
+      it "should have a create_* method" do
+        create_foo_sub_thing.class.should == Foo::SubThing
+      end
+    end
+
   end
 end
